@@ -4,8 +4,7 @@
   </head>
 
 <?php
-$conn = mysqli_connect('localhost', 'web412023', 'web412023', 'projectSADM');
-include "logInPage/login.php";
+
 
   echo'<fieldset class="w3-auto w3-card-4 w3-auto w3-center w3-padding w3-margin">';
       echo'<img class="w3-center" src="img/gulaMomoSignboard.png" alt=""><br><br><br>';
