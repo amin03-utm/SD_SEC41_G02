@@ -5,7 +5,7 @@
 
 <?php
 
-  echo "hello";
+  
   echo'<fieldset class="w3-auto w3-card-4 w3-auto w3-center w3-padding w3-margin">';
       echo'<img class="w3-center" src="img/gulaMomoSignboard.png" alt=""><br><br><br>';
       echo'<h1 class="w3-purple w3-text-white w3-animated-top">Welcome to GULAMOMO </h1><br>';
