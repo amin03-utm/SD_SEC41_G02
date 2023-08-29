@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<style>
+		@import url("https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap");
+		
+		* {
+		  margin: 0;
+		  padding: 0;
+		  box-sizing: border-box;
+		  font-family: 'Cairo', sans-serif;}
+		body {
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		  min-height: 100vh;
+		  overflow: hidden;
+		  background: #dcd9cd;
+		}
+		ul {
+		  position: relative;
+		}
+		ul li {
+		  list-style: none;
+		  text-align: center;
+		}
+		ul li a {
+		  color: #333;
+		  text-decoration: none;
+		  font-size: 3em;
+		  padding: 5px 20px;
+		  display: inline-flex;
+		  font-weight: 700;
+		  transition: 0.5s;
+		}
+		ul:hover li a {
+		  color: #0002;
+		}
+		ul li:hover a {
+		  color: #000;
+		  background: transparent;
+		}
+		ul li a:before {
+		  content: "";
+		  position: absolute;
+		  top: 50%;
+		  left: 40%;
+		  transform: translate(-50%, -50%);
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		  font-size: 3em;
+		  color: rgba(0, 0, 0, 0.1);
+		  border-radius: 100%;
+		  z-index: -1;
+		  opacity: 0.2;
+		  font-weight: 900;
+		  text-transform: uppercase;
+		  letter-spacing: 500px;
+		  transition: letter-spacing 0.5s, left 0.5s;
+		}
+		ul li a:hover:before {
+		  content: attr(data-text);
+		  opacity: 1;
+		  left: 50%;
+		  letter-spacing: 10px;
+		  width: 1800px;
+		  height: 1800px;
+		}
+		ul li:nth-child(6n + 1) a:before {
+		  background: #83a3ce;
+		}
+		ul li:nth-child(6n + 2) a:before {
+		  background: #c78181;}
+
+		
+		</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gulamomo Bakery Registration</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    
+</head>
+<body>
+
+	<ul>
+		<li><a target="_blank" href="https://youtu.be/dQw4w9WgXcQ?si=qlR9MXlxe2VDTpj2" data-text="I'm">a Guest</a></li>
+		<li><a target="_blank" href="https://youtu.be/dQw4w9WgXcQ?si=qlR9MXlxe2VDTpj2" data-text="I'm">a Customer</a></li>
+	  </ul>
+</body>
+</html>
