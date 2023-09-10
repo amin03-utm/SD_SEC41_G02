@@ -818,7 +818,7 @@ textarea#comment.massage-bt::placeholder {
 
 .send_bt {
     width: 170px;
-    margin: 0 auto;
+    margin: auto ;
     text-align: center;
 }
 
