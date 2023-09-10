@@ -1,4 +1,6 @@
 <?php
+include "../customer/customer.php";//ni function supaya user =Type and validPasssword function (file ade dekat customer.php)
+
 session_start(); // Start a session
 
 if (isset($_POST['submit'])) {
@@ -8,17 +10,19 @@ if (isset($_POST['submit'])) {
     }
 
     $Email = $_POST['Email'];
-    $Password = $_POST['Password'];
+    $password = $_POST['password'];
 
     $isValidUser = validatePassword($Email,$password);
 
 if($isValidUser)
 	{
 	$userType = getUserType($Email); //ADMIN
-	if($userType =='ADMIN')
-		header("location:../menu/adminMenu.php"); // redirect to admin page
-	else if($userType =='STAFF')
-		header("location:../menu/staffMenu.php"); // redirect to staff menu page
+	if($userType =='Admin')
+		header("location:../admin/adminMenu.html"); // redirect to admin page
+	else if($userType =='Staff')
+		header("location:../staff/staffMenu.html"); // redirect to staff menu page
+    else if($userType =='Customer')
+		header("location:../mainpage(guest)/menu.html"); // tryii lu bende ni bawa ke menu
 	}
 else {
 	echo'<div class="w3-center w3-container" style="width:400px; margin:auto">';

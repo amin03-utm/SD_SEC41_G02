@@ -23,7 +23,7 @@ mysqli_query($con,$sql);
 }
 }
 
-function validatePassword($Email,$Password)
+function validatePassword($Email,$password)
 {
     $con=mysqli_connect("localhost","web41","ddwd2703web","db_sd_41_02");
 if(!$con)
@@ -31,7 +31,7 @@ if(!$con)
 	echo  mysqli_connect_error(); 
 	exit;
 	}
-$sql= "SELECT * FROM customer where Username = '".$Email ."' and Password ='".$Password."'";
+$sql= "SELECT * FROM user where Email = '".$Email ."' and password ='".$password."'";
 $result = mysqli_query($con,$sql);
 $count = mysqli_num_rows($result); //check how many matching record - should be 1 if correct
 if($count == 1){
@@ -44,7 +44,7 @@ else
 	}
 
 
-function getUserType($UserId)
+function getUserType($Email)
 {
 $con=mysqli_connect("localhost","web41","ddwd2703web","db_sd_41_02");
 if(!$con)
@@ -52,7 +52,7 @@ if(!$con)
 	echo  mysqli_connect_error(); 
 	exit;
 	}
-$sql= "SELECT * FROM customer where UserId = '".$UserId ."'";
+$sql= "SELECT * FROM user where Email = '".$Email ."'";
 $result = mysqli_query($con,$sql); 
 $count = mysqli_num_rows($result); //check how many matching record - should be 1 if correct
 if($count == 1){
