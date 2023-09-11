@@ -18,17 +18,17 @@
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Login</h2>
 
-              <form>
+              <form action="login.php" method="POST">
 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example3cg">Email</label>
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="Enter email..."/>
+                  <input type="email" name="Email" id="form3Example3cg" class="form-control form-control-lg" placeholder="Enter email..."/>
                   
                 </div>
 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example4cg" >Password</label>
-                  <input type="password" id="form3Example4cg" class="form-control form-control-lg" placeholder="Enter password..."/>
+                  <input type="password" name="password" id="form3Example4cg" class="form-control form-control-lg" placeholder="Enter password..."/>
                   <br>
                   <p style="text-align: center;">forgot password, <a href="password_recovery.html">click here</a></p>
 
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                  <button type="button"
+                  <button type="submit" name="submit"
                     class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Login</button>
                 </div>
 
