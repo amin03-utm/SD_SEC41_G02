@@ -18,11 +18,11 @@ if($isValidUser)
 	{
 	$userType = getUserType($Email); //ADMIN
 	if($userType =='Admin')
-		header("location:../admin/adminMenu.html"); // redirect to admin page
+		header("location:../admin/indexAdmin.html"); // redirect to admin page
 	else if($userType =='Staff')
-		header("location:../staff/staffMenu.html"); // redirect to staff menu page
+		header("location:../staff/indexStaff.html"); // redirect to staff menu page
     else if($userType =='Customer')
-		header("location:../mainpage(guest)/menu.html"); // tryii lu bende ni bawa ke menu
+		header("location:../customer/mainpage(customer)/indexCustomer.html"); // tryii lu bende ni bawa ke menu
 	}
 else {
 	echo'<div class="w3-center w3-container" style="width:400px; margin:auto">';
