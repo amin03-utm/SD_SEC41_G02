@@ -2,7 +2,7 @@
 
 function addNewAdmin()
 {
-$con=mysqli_connect("localhost","web41","ddwd2703web","db_sd_41_02");
+$con=mysqli_connect("localhost","sd41","sd41project","db_sd_41_02");
 if(!$con)
 {
 echo "Error".mysqli_connect_error();

@@ -4,7 +4,7 @@ include "../customer/customer.php";//ni function supaya user =Type and validPass
 session_start(); // Start a session
 
 if (isset($_POST['submit'])) {
-    $conn = mysqli_connect('localhost', 'web41', 'ddwd2703web', 'db_sd_41_02');
+    $conn = mysqli_connect('localhost', 'sd41', 'sd41project', 'db_sd_41_02');
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
@@ -22,7 +22,7 @@ if($isValidUser)
 	else if($userType =='Staff')
 		header("location:../staff/indexStaff.html"); // redirect to staff menu page
     else if($userType =='Customer')
-		header("location:../customer/mainpage(customer)/indexCustomer.html"); // tryii lu bende ni bawa ke menu
+		header("location:../customer/mainpage(customer)/indexCustomer.html"); // redirect to customer page
 	}
 else {
 	echo'<div class="w3-center w3-container" style="width:400px; margin:auto">';

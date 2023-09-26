@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['submit'])) {
-    $conn = mysqli_connect('localhost', 'web41', 'ddwd2703web', 'db_sd_41_02');
+    $conn = mysqli_connect('localhost', 'sd41', 'sd41project', 'db_sd_41_02');
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
