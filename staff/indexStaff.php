@@ -32,7 +32,7 @@
       <div class="header_section">
          <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="indexStaff.html">
+                <a class="navbar-brand" href="indexStaff.php">
                     <img src="images/logo.png" alt="Logo" style="width: 400px; height: 80px;">
                   </a>
                   
@@ -42,7 +42,7 @@
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                       <a class="nav-link" href="indexStaff.html">Home</a>
+                       <a class="nav-link" href="indexStaff.php">Home</a>
                     </li>
                     
                     <li class="nav-item">
@@ -96,42 +96,43 @@
 									</thead>
 									<tbody>
 
-									?php
-										// Assuming you have a database connection established
-										// and a query to fetch customer data from your database
-										$servername = "your_server_name";
-										$username = "your_username";
-										$password = "your_password";
-										$dbname = "your_database_name";
-										
-										// Create a connection
-										$conn = new mysqli($servername, $username, $password, $dbname);
-										
-										// Check the connection
-										if ($conn->connect_error) {
-											die("Connection failed: " . $conn->connect_error);
-										}
-										
-										// Query to fetch customer data from the database
-										$customerSql = "SELECT name, email FROM customer_table";
-										$customerResult = $conn->query($customerSql);
-										
-										// Loop through the customer results and populate the table rows
-										if ($customerResult->num_rows > 0) {
-											while ($row = $customerResult->fetch_assoc()) {
-												echo "<tr>";
-												echo "<td>" . $row["name"] . "</td>";
-												echo "<td>" . $row["email"] . "</td>";
-												echo '<td>
-														  <button class="btn btn-primary">Edit</button>
-														  <button class="btn btn-danger">Delete</button>
-													  </td>';
-												echo "</tr>";
-											}
-										} else {
-											echo "<tr><td colspan='3'>No customer data available</td></tr>";
-										}
-										?>
+                           <?php
+                            // Assuming you have a database connection established
+                            // and a query to fetch staff data from your database
+                            $servername = "localhost";
+                            $username = "sd41";
+                            $password = "sd41project";
+                            $dbname = "db_sd_41_02";
+
+                            // Create a connection
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+
+                            // Check the connection
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
+
+                            // Query to fetch staff data from the database
+                            $staffSql = "SELECT Username, Email, userType FROM user WHERE userType = 'staff'";
+                            $staffResult = $conn->query($staffSql);
+
+                            // Loop through the staff results and populate the table rows
+                            if ($staffResult->num_rows > 0) {
+                                while ($row = $staffResult->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>" . $row["Username"] . "</td>";
+                                    echo "<td>" . $row["Email"] . "</td>";
+                                    echo "<td>" . $row["userType"] . "</td>";
+                                    echo '<td>
+                                            <button class="btn btn-primary">Edit</button>
+                                            <button class="btn btn-danger">Delete</button>
+                                          </td>';
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='3'>No staff data available</td></tr>";
+                            }
+                            ?>
 									</tbody>
 								</table>
 							</div>

@@ -18,9 +18,9 @@ if($isValidUser)
 	{
 	$userType = getUserType($Email); //ADMIN
 	if($userType =='Admin')
-		header("location:../admin/indexAdmin.html"); // redirect to admin page
+		header("location:../admin/indexAdmin.php"); // redirect to admin page
 	else if($userType =='Staff')
-		header("location:../staff/indexStaff.html"); // redirect to staff menu page
+		header("location:../staff/indexStaff.php"); // redirect to staff menu page
     else if($userType =='Customer')
 		header("location:../customer/mainpage(customer)/indexCustomer.html"); // redirect to customer page
 	}
