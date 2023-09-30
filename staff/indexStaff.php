@@ -113,7 +113,7 @@
                             }
 
                             // Query to fetch staff data from the database
-                            $staffSql = "SELECT Username, Email, userType FROM user WHERE userType = 'staff'";
+                            $staffSql = "SELECT Username, Email, userType FROM user WHERE userType = 'customer'";
                             $staffResult = $conn->query($staffSql);
 
                             // Loop through the staff results and populate the table rows

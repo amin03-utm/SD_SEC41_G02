@@ -31,13 +31,13 @@ include "processOTP.php";
                                                 <label for="inputEmail">Email address</label>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="loginPage.php">Return to login</a>
+                                                <a class="small" href="loginPage.html">Return to login</a>
                                                 <button class="btn btn-primary" type="submit" name="resetButton">Reset</button>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="registerPage.php">Need an account? Sign up!</a></div>
+                                        <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
                                     </div>
                                 </div>
                             </div>

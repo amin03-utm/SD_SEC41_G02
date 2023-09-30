@@ -12,27 +12,50 @@ if (isset($_POST['submit'])) {
     $Email = $_POST['Email'];
     $password = $_POST['password'];
 
-    $isValidUser = validatePassword($Email,$password);
+    // Check if both Email and password are empty
+    if (empty($Email) && empty($password)) {
+		echo '<div class="w3-center w3-container" style="width:400px; margin:auto">';
+        echo "<center><br><br><div class='w3-center w3-container w3-red w3-margin w3-padding'><b><br>Email & Password are required fields<br><br></b>";
+        echo '</div>';
+        echo '<br><br><br><a class="w3-text-blue" href="loginPage.html"><b>Try Again</b></a>';
+    } else {
+        // Check if Email is empty
+        if (empty($Email)) {
+		echo '<div class="w3-center w3-container" style="width:400px; margin:auto">';
+        echo "<center><br><br><div class='w3-center w3-container w3-red w3-margin w3-padding'><b><br>Email are required fields<br><br></b>";
+        echo '</div>';
+        echo '<br><br><br><a class="w3-text-blue" href="loginPage.html"><b>Try Again</b></a>';
+        }
+        // Check if password is empty
+        else if (empty($password)) {
+			echo '<div class="w3-center w3-container" style="width:400px; margin:auto">';
+			echo "<center><br><br><div class='w3-center w3-container w3-red w3-margin w3-padding'><b><br>Password are required fields<br><br></b>";
+			echo '</div>';
+			echo '<br><br><br><a class="w3-text-blue" href="loginPage.html"><b>Try Again</b></a>';	
+        }
+        // Validate the user's credentials if both fields are provided
+        else {
+            $isValidUser = validatePassword($Email, $password);
 
-if($isValidUser)
-	{
-	$userType = getUserType($Email); //ADMIN
-	if($userType =='Admin')
-		header("location:../admin/indexAdmin.php"); // redirect to admin page
-	else if($userType =='Staff')
-		header("location:../staff/indexStaff.php"); // redirect to staff menu page
-    else if($userType =='Customer')
-		header("location:../customer/mainpage(customer)/indexCustomer.html"); // redirect to customer page
-	}
-else {
-	echo'<div class="w3-center w3-container" style="width:400px; margin:auto">';
-	echo "<center><br><br><div class='w3-center w3-container w3-red w3-margin w3-padding'><b><br>Wrong User Id or Password !!!<br><br></b>";
-	echo'</div>';
-	echo '<br><br><br><a class="w3-text-blue" href="loginPage.html"><b>Try Again</b></a>';
-	}
+            if ($isValidUser) {
+                $userType = getUserType($Email); // ADMIN, Staff, or Customer
+                if ($userType == 'Admin') {
+                    header("location:../admin/indexAdmin.php"); // Redirect to admin page
+                } elseif ($userType == 'Staff') {
+                    header("location:../staff/indexStaff.php"); // Redirect to staff menu page
+                } elseif ($userType == 'Customer') {
+                    header("location:../customer/mainpage(customer)/indexCustomer.html"); // Redirect to customer page
+                }
+            } else {
+                echo '<div class="w3-center w3-container" style="width:400px; margin:auto">';
+                echo "<center><br><br><div class='w3-center w3-container w3-red w3-margin w3-padding'><b><br>Wrong Email or Password !!!<br><br></b>";
+                echo '</div>';
+                echo '<br><br><br><a class="w3-text-blue" href="loginPage.html"><b>Try Again</b></a>';
+            }
+        }
+    }
 
     // Close the database connection
     mysqli_close($conn);
 }
-
 ?>
