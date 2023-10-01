@@ -34,10 +34,11 @@ if (isset($_POST['submit'])) {
         echo '</div>';
         echo '<br><br><br><a class="w3-text-blue" href="register.html"><b>Try Again</b></a>';
     } elseif ($password == $Cpassword) {
-        $sql = "INSERT INTO user (Username, Email, Password, userType) VALUES ('$Username', '$Email', '$password','$userType')";
+        $sql = "INSERT INTO user (Username, Email, Password, userType) VALUES ('$Username', '$Email', '$password', '$userType')";
         if (mysqli_query($conn, $sql)) {
-            header('Location: loginPage.html');
-            echo "Registration successful.";
+            // Redirect to indexAdmin.php after successful registration
+            header('Location: indexAdmin.php');
+            exit; // Make sure to exit to prevent further script execution
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
@@ -45,7 +46,7 @@ if (isset($_POST['submit'])) {
         echo '<div class="w3-center w3-container" style="width:400px; margin:auto">';
         echo "<center><br><br><div class='w3-center w3-container w3-red w3-margin w3-padding'><b><br>Password does not match!!!<br><br></b>";
         echo '</div>';
-        echo '<br><br><br><a class="w3-text-blue" href="register.html"><b>Try Again</b></a>';
+        echo '<br><br><br><a class="w3-text-blue" href="Staff.html"><b>Try Again</b></a>';
     }
     
 

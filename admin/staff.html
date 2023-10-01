@@ -18,7 +18,7 @@
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Add Staff</h2>
 
-              <form action="register.php" method="POST">
+              <form action="Staff.php" method="POST">
 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example1cg">Name</label>
@@ -48,9 +48,7 @@
                   <label class="form-label" for="form3Example4cdg">Role</label> 
                   <br>
                   <select name="userType">
-                    <option value="Customer">Customer</option>
                     <option value="Staff">Staff</option>
-                    <option value="Admin">Admin</option>
                  </select>
 
                 <br>
@@ -62,8 +60,8 @@
                 <div class="form-check d-flex justify-content-center mb-5">
                  
                   <label class="form-check-label" for="form2Example3g">
-                    <input class="form-check-input me-2" type="checkbox" name="termsChecked" value="" id="form2Example3cg" />
-                    I agree all statements in <a href="tnC.html" class="text-body"><u>Terms of service</u></a>
+                    <input class="form-check-input me-2" type="checkbox" name="termsChecked" value="on" id="form2Example3cg" />
+                    I agree all statements in <a href="../registration/tnC.html" class="text-body"><u>Terms of service</u></a>
                   </label>
                 </div>
 

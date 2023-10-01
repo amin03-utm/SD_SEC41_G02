@@ -18,7 +18,7 @@
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-              <form action="register.php" method="POST">
+              <form action="registerAdminStaff.php" method="POST">
 
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example1cg">Name</label>
@@ -45,11 +45,20 @@
                 </div>
 
                 <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example4cdg">Enter Secret Code</label>
+                  <input type="password" name="userCode" id="form3Example4cdg" class="form-control form-control-lg" />
+                  
+                </div>
+
+                <div class="form-outline mb-4">
                   <label class="form-label" for="form3Example4cdg">Role</label> 
                   <br>
                   <select name="userType">
-                    <option value="Customer">Customer</option>
+                    <option value="Staff">Staff</option>
+                    <option value="Admin">Admin</option>
                  </select>
+
+                 
 
                 <br>
                 <br>
@@ -73,8 +82,6 @@
                 <p class="text-center text-muted mt-5 mb-0">Already have an account? <a href="loginPage.html"
                     class="fw-bold text-body"><u>Login here</u></a></p>
 
-                    <p class="text-center text-muted mt-5 mb-0">Register As Admin Or Staff <a href="registerAdminStaff.html"
-                      class="fw-bold text-body"><u>Register here</u></a></p>
 
               </form>
 

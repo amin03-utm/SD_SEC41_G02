@@ -52,10 +52,13 @@
                     <li class="nav-item">
                      <a class="nav-link" href="editProfile.html">Profile</a>
                      <li class="nav-item">
-                        <a class="nav-link" href="customer.html">Customer</a>
+                        <a class="nav-link" href="Customer.html">Customer</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="staff.html">Staff</a>
+                        <a class="nav-link" href="editStaff.html">Staff</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="Staff.html">Add Staff</a>
                      </li>
                   </li>
 
