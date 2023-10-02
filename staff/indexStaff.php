@@ -52,7 +52,7 @@
                     <li class="nav-item">
                      <a class="nav-link" href="editProfile.html">Profile</a>
                      <li class="nav-item">
-                        <a class="nav-link" href="../admin/customer.html">Customer</a>
+                        <a class="nav-link" href="Customer.html">Customer</a>
                      </li>
                   </li>
 
@@ -86,11 +86,12 @@
 							<div class="card-body">
 								<!-- Customer List Table -->
 								<h3 class="card-title"><b>Customer List</b></h5>
-								<table class="table table-bordered">
+								<table class="table table-bordered" >
 									<thead>
 										<tr>
 											<th>Name</th>
 											<th>Email</th>
+                                 <th>User Type</th>
 											<th>Action</th>
 										</tr>
 									</thead>
