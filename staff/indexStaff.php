@@ -125,7 +125,10 @@
                                     echo "<td>" . $row["userType"] . "</td>";
                                     echo '<td>
                                             <button class="btn btn-primary">Edit</button>
-                                            <button class="btn btn-danger">Delete</button>
+                                            <form action="deleteFunctionStaff.php" method="POST">
+                                            <input type="hidden" name="user_email" value="' . $row["Email"] . '">
+                                            <button type="submit" name="delete_staff" class="btn btn-danger">Delete</button>
+                                          </form>
                                           </td>';
                                     echo "</tr>";
                                 }

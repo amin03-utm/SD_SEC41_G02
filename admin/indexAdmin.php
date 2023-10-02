@@ -131,7 +131,10 @@
                                     echo "<td>" . $row["userType"] . "</td>";
                                     echo '<td>
                                             <button class="btn btn-primary">Edit</button>
-                                            <button class="btn btn-danger">Delete</button>
+                                            <form action="deleteFunctionAdmin.php" method="POST">
+    <input type="hidden" name="user_email" value="' . $row["Email"] . '">
+    <button type="submit" name="delete_staff" class="btn btn-danger">Delete</button>
+</form>
                                           </td>';
                                     echo "</tr>";
                                 }
@@ -148,60 +151,66 @@
             <br><br><br>
 
             <!-- Staff List Table -->
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title"><b>Staff List</b></h3>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>User Type</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            // Assuming you have a database connection established
-                            // and a query to fetch staff data from your database
-                            $servername = "localhost";
-                            $username = "sd41";
-                            $password = "sd41project";
-                            $dbname = "db_sd_41_02";
+            <!-- Staff List Table -->
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title"><b>Staff List</b></h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>User Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Assuming you have a database connection established
+                // and a query to fetch staff data from your database
+                $servername = "localhost";
+                $username = "sd41";
+                $password = "sd41project";
+                $dbname = "db_sd_41_02";
 
-                            // Create a connection
-                            $conn = new mysqli($servername, $username, $password, $dbname);
+                // Create a connection
+                $conn = new mysqli($servername, $username, $password, $dbname);
 
-                            // Check the connection
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
+                // Check the connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
 
-                            // Query to fetch staff data from the database
-                            $staffSql = "SELECT Username, Email, userType FROM user WHERE userType = 'staff'";
-                            $staffResult = $conn->query($staffSql);
+                // Query to fetch staff data from the database
+                $staffSql = "SELECT Username, Email, userType FROM user WHERE userType = 'staff'";
+                $staffResult = $conn->query($staffSql);
 
-                            // Loop through the staff results and populate the table rows
-                            if ($staffResult->num_rows > 0) {
-                                while ($row = $staffResult->fetch_assoc()) {
-                                    echo "<tr>";
-                                    echo "<td>" . $row["Username"] . "</td>";
-                                    echo "<td>" . $row["Email"] . "</td>";
-                                    echo "<td>" . $row["userType"] . "</td>";
-                                    echo '<td>
-                                            <button class="btn btn-primary">Edit</button>
-                                            <button class="btn btn-danger">Delete</button>
-                                          </td>';
-                                    echo "</tr>";
-                                }
-                            } else {
-                                echo "<tr><td colspan='3'>No staff data available</td></tr>";
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                // Loop through the staff results and populate the table rows
+                if ($staffResult->num_rows > 0) {
+                    while ($row = $staffResult->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $row["Username"] . "</td>";
+                        echo "<td>" . $row["Email"] . "</td>";
+                        echo "<td>" . $row["userType"] . "</td>";
+                        echo '<td>
+                                <button class="btn btn-primary">Edit</button>
+                                <form action="deleteFunctionAdmin.php" method="POST">
+    <input type="hidden" name="user_email" value="' . $row["Email"] . '">
+    <button type="submit" name="delete_staff" class="btn btn-danger">Delete</button>
+</form>
+
+                              </td>';
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='3'>No staff data available</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
             <!-- blog section end -->
       <!-- contact section start -->
