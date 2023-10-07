@@ -125,7 +125,7 @@
                                     echo "<td>" . $row["Email"] . "</td>";
                                     echo "<td>" . $row["userType"] . "</td>";
                                     echo '<td>
-                                            <button class="btn btn-primary">Edit</button>
+                                    <a href="Customer.html" class="btn btn-primary">Edit</a>
                                             <form action="deleteFunctionStaff.php" method="POST">
                                             <input type="hidden" name="user_email" value="' . $row["Email"] . '">
                                             <button type="submit" name="delete_staff" class="btn btn-danger">Delete</button>

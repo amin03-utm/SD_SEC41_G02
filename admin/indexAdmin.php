@@ -130,7 +130,8 @@
                                     echo "<td>" . $row["Email"] . "</td>";
                                     echo "<td>" . $row["userType"] . "</td>";
                                     echo '<td>
-                                            <button class="btn btn-primary">Edit</button>
+                                    
+                                    <a href="Customer.html" class="btn btn-primary">Edit</a>
                                             <form action="deleteFunctionAdmin.php" method="POST">
     <input type="hidden" name="user_email" value="' . $row["Email"] . '">
     <button type="submit" name="delete_staff" class="btn btn-danger">Delete</button>
@@ -193,8 +194,8 @@
                         echo "<td>" . $row["Email"] . "</td>";
                         echo "<td>" . $row["userType"] . "</td>";
                         echo '<td>
-                                <button class="btn btn-primary">Edit</button>
-                                <form action="deleteFunctionAdmin.php" method="POST">
+                        <a href="editStaff.html" class="btn btn-primary">Edit</a>
+                        <form action="deleteFunctionAdmin.php" method="POST">
     <input type="hidden" name="user_email" value="' . $row["Email"] . '">
     <button type="submit" name="delete_staff" class="btn btn-danger">Delete</button>
 </form>
