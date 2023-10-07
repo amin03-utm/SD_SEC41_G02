@@ -38,6 +38,8 @@ if (isset($_POST['submit'])) {
             $isValidUser = validatePassword($Email, $password);
 
             if ($isValidUser) {
+                $_SESSION['user_email'] = $Email;
+
                 $userType = getUserType($Email); // ADMIN, Staff, or Customer
                 if ($userType == 'Admin') {
                     header("location:../admin/indexAdmin.php"); // Redirect to admin page
