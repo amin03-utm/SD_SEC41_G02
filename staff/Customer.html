@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Customer Edit Profile</title>
+      <title>Contact Us</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -72,23 +72,27 @@
       <!-- contact section start -->
       <div class="container d-flex justify-content-center">
          <div class="row">
-            <div class="col-sm-12"><br><br><br><br>
-               <h1 class="contact_taital">Edit customer</h1>
-               <div class="bulit_icon"><img src="images/user_icon.jpg"></div>
-            </div>
+             <div class="col-sm-12">
+                 <br><br><br><br>
+                 <h1 class="contact_taital">Edit Customer</h1>
+                 <div class="bulit_icon"><img src="images/user_icon.jpg"></div>
+             </div>
          </div>
-      </div>
-      
-      <div class="container">
-         <input type="text" class="mail_text" placeholder="Name" name="Your Name">
-         <input type="text" class="mail_text" placeholder="Email" name="Your Email">
-         <input type="text" class="mail_text" placeholder="Phone" name="Your Phone">
-         <input type="text" class="mail_text" placeholder="Password" name="Your Password">
-         <br>
-         <div class="text-center">
-            <button style="background-color: #007bff; color: #fff; border: none; padding: 10px 20px; cursor: pointer; margin-top: 20px; margin-bottom: 3in;" onmouseover="this.style.backgroundColor='#0056b3'" onmouseout="this.style.backgroundColor='#007bff'">EDIT PROFILE</button>
-         </div>
-      </div>
+     </div>
+ 
+     <div class="container">
+         <form action="editCustomer.php" method="POST">
+             <input type="text" class="mail_text" placeholder="Email" name="email">
+             <input type="text" class="mail_text" placeholder="Name" name="Username">
+             <input type="password" class="mail_text" placeholder="Password" name="password">
+             <!-- Add more fields as needed -->
+             <br>
+             <div class="text-center">
+                 <button type="submit" style="background-color: #007bff; color: #fff; border: none; padding: 10px 20px; cursor: pointer; margin-top: 20px; margin-bottom: 3in;"
+                         onmouseover="this.style.backgroundColor='#0056b3'" onmouseout="this.style.backgroundColor='#007bff'">EDIT PROFILE</button>
+             </div>
+         </form>
+     </div>
       
       
       
