@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Contact Us</title>
+      <title>Edit/Add Menu</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -41,7 +41,7 @@
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav ml-auto">
                      <li class="nav-item">
-                        <a class="nav-link" href="indexAdmin.php">Home</a>
+                        <a class="nav-link" href="indexStaff.php">Home</a>
                      </li>
                     
                      
@@ -53,13 +53,7 @@
                       <a class="nav-link" href="editProfile.html">Profile</a>
                    </li>
                    <li class="nav-item">
-                      <a class="nav-link" href="Customer.html">Customer</a>
-                   </li>
-<<<<<<< HEAD
-                  
-=======
-                   <li class="nav-item">
-                      <a class="nav-link" href="staff.html">Staff</a>
+                      <a class="nav-link" href="../admin/customer.html">Customer</a>
                    </li>
                   </ul>
                    <!--log out-->
@@ -78,27 +72,23 @@
       <!-- contact section start -->
       <div class="container d-flex justify-content-center">
          <div class="row">
-             <div class="col-sm-12">
-                 <br><br><br><br>
-                 <h1 class="contact_taital">Edit Customer</h1>
-                 <div class="bulit_icon"><img src="images/user_icon.jpg"></div>
-             </div>
+            <div class="col-sm-12"><br><br><br><br>
+               <h1 class="contact_taital">Edit/Add Menu</h1>
+               <div class="bulit_icon"><img src="images/menuimage.png"></div>
+            </div>
          </div>
-     </div>
- 
-     <div class="container">
-         <form action="editCustomer.php" method="POST">
-             <input type="text" class="mail_text" placeholder="Email" name="email">
-             <input type="text" class="mail_text" placeholder="Name" name="Username">
-             <input type="password" class="mail_text" placeholder="Password" name="password">
-             <!-- Add more fields as needed -->
-             <br>
-             <div class="text-center">
-                 <button type="submit" style="background-color: #007bff; color: #fff; border: none; padding: 10px 20px; cursor: pointer; margin-top: 20px; margin-bottom: 3in;"
-                         onmouseover="this.style.backgroundColor='#0056b3'" onmouseout="this.style.backgroundColor='#007bff'">EDIT PROFILE</button>
-             </div>
-         </form>
-     </div>
+      </div>
+      
+      <div class="container">
+         <input type="text" class="mail_text" placeholder="Name" name="Your Name">
+         <input type="currency" class="mail_text" placeholder="Price" name="Price">
+         <input type="file" class="mail_text" placeholder="Product image" name="Image">
+        
+         <br>
+         <div class="text-center">
+            <button style="background-color: #007bff; color: #fff; border: none; padding: 10px 20px; cursor: pointer; margin-top: 20px; margin-bottom: 3in;" onmouseover="this.style.backgroundColor='#0056b3'" onmouseout="this.style.backgroundColor='#007bff'">UPDATE MENU</button>
+         </div>
+      </div>
       
       
       
