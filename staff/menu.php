@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Menu</title>
+      <title>Gulamomo bakery</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -29,65 +29,61 @@
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
    </head>
    <body>
-      <div class="header_section header_bg">
+      <div class="header_section">
          <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-               <a class="navbar-brand" href="index.html">
-                  <img src="images/logo.png" alt="Logo" style="width: 400px; height: 80px;">
-                </a>
+                <a class="navbar-brand" href="indexAdmin.php">
+                    <img src="images/logo.png" alt="Logo" style="width: 400px; height: 80px;">
+                  </a>
+                  
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
                </button>
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav ml-auto">
                      <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About Us</a>
+                        <a class="nav-link" href="indexStaff.php">Home</a>
                      </li>
                      
                      <li class="nav-item">
                         <a class="nav-link" href="menu.html">Menu</a>
                      </li>
+                    
                      <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
-                     </li>
+                      <a class="nav-link" href="editProfile.html">Profile</a>
+                      <li class="nav-item">
+                         <a class="nav-link" href="Customer.html">Customer</a>
+                      </li>
+                   </li>
+ 
                   </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                     <div class="login_bt">
-                        <ul>
-                           <li><a href="../registration/loginPage.html"><span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>Login</a></li>
-                       
-                        </ul>
-                     </div>
-                  </form>
+
+                 <!--log out-->
+                 <form class="form-inline my-2 my-lg-0">
+                  <div class="login_bt">
+                      <ul style="display: flex; list-style-type: none; padding: 0;">
+                          <li style="margin-right: 1px; font-size: 5px;"><a href="logout.php"><span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>Logout</a></li>
+                          
+                      </ul>
+                  </div>
+              </form>
+              
+               
+                  
                </div>
             </nav>
          </div>
-      </div>
-      <!-- header section end -->
-      <!-- blog section start -->
-      <div class="blog_section layout_padding">
-        
-             <div class="row">
-                 <div class="col-md-12">
-                     <h1 class="about_taital">Our Menu</h1>
-                     <div class="bulit_icon"><img src="images/bulit-icon.png"></div>
-                 </div>
-             </div>
-
-              <!--menu list-->
+   <!--menu list-->
    <main class="content">
       <div class="container-fluid p-1">
-          <h1 style="margin-top: 10px;"  class="h2 mb-3"><strong>Menu </strong></h1>
+          <h1 style="margin-top: 10px;"  class="h2 mb-3"><strong>Menu Setting</strong></h1>
 
           <div class="card">
              <div class="card-body">
                  <div class="d-flex justify-content-between align-items-center">
                      <h3 class="card-title mb-0">Menu List</h3>
                      <!-- Add Menu -->
-                   
+                     <a href="editMenuStaff.php" class="btn btn-primary">Add Menu</a>
                  </div>
                   <table class="table table-bordered">
                       <thead>
@@ -127,13 +123,13 @@
                                   echo "<td>" . $row["Email"] . "</td>";
                                   echo "<td>" . $row["userType"] . "</td>";
                                   echo '<td>
-                                    <div class="read_bt"><a href="../registration/loginPage.html">Add to cart</a></div> 
-                                          
+                                          <button class="btn btn-primary">Edit</button>
+                                          <button class="btn btn-danger">Delete</button>
                                         </td>';
                                   echo "</tr>";
                               }
                           } else {
-                              echo "<tr><td colspan='3'>No menu data available</td></tr>";
+                              echo "<tr><td colspan='3'>No customer data available</td></tr>";
                           }
                           ?>
                       </tbody>
@@ -142,35 +138,36 @@
           </div>
 
           <br><br>
-            
-   <!-- blog section end -->
-      <!-- footer section start -->
-      <div class="footer_section layout_padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <h1 class="address_text">Address</h1>
-                  <p class="footer_text">Madrasatul kiramah, Lot kedai no 3, Jalan Keramat, Kampung Datuk Keramat, 54000 Kuala Lumpur, Federal Territory of Kuala Lumpur.</p>
-                  <div class="location_text">
-                     <ul>
-                        <li>
-                           <a href="#">
-                           <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10">+6012-9336952</span>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#">
-                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">gulamomobakery@gmail.com</span>
-                           </a>
-                        </li>
-                     </ul>
-                  </div>
-                 
+      
+          <!-- blog section end -->
+
+    <!-- footer section start -->
+    <div class="footer_section layout_padding">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <h1 class="address_text">Contact Us</h1>
+               <p class="footer_text">Madrasatul kiramah, Lot kedai no 3, Jalan Keramat, Kampung Datuk Keramat, 54000 Kuala Lumpur, Federal Territory of Kuala Lumpur </p>
+               <div class="location_text">
+                  <ul>
+                     <li>
+                        <a href="#">
+                        <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10">+6012-9336952</span>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="#">
+                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">gulamomobakery@gmail.com</span>
+                        </a>
+                     </li>
+                  </ul>
                </div>
+              
             </div>
          </div>
       </div>
-      <!-- footer section end -->
+   </div>
+    <!-- footer section end -->
       <!-- copyright section start -->
       <div class="copyright_section">
          <div class="container">
