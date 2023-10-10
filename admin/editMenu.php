@@ -1,136 +1,87 @@
 <?php
 error_reporting(E_ALL);
-ini_set('display_errors', '1');
+ini_set('display_errors', 1);
 
-$action = isset($_GET['action']) ? $_GET['action'] : '';
-$id = isset($_GET['id']) ? $_GET['id'] : '';
-
+// Include your database connection code here
 $servername = "localhost";
 $username = "sd41";
 $password = "sd41project";
 $dbname = "db_sd_41_02";
 
-// Create a connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check the connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-if ($action == 'edit' && !empty($id)) {
-    // Fetch the menu item details from the database based on $id for editing
-    // You can write SQL queries and retrieve the data here
-    $sql = "SELECT * FROM menu_items WHERE id = $id";
-    $result = $conn->query($sql);
+// Check if "action" is set and is equal to "edit"
+if (isset($_GET["action"]) && $_GET["action"] === "edit") {
+    // Check if "id" is set in the URL
+    if (isset($_GET["id"])) {
+        $menuId = $_GET["id"];
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $name = $row['name'];
-        $price = $row['price'];
-        $image = $row['image'];
-    } else {
-        echo "Menu item not found.";
-    }
-} else {
-    // This is for adding a new menu item
-    $name = '';
-    $price = '';
-    $image = '';
-}
+        // Query the database to fetch the menu item by ID
+        $sql = "SELECT * FROM menu_items WHERE id = $menuId";
+        $result = $conn->query($sql);
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   $name = $_POST['name'];
-   $price = $_POST['price'];
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            // Display a form for editing the menu item
+            ?>
 
-   // Handle image upload
-   $target_dir = "uploads/";
-   $target_file = $target_dir . basename($_FILES["image"]["name"]);
-   $uploadOk = 1;
-   $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-   // Check if image file is an actual image or fake image
-   $check = getimagesize($_FILES["image"]["tmp_name"]);
-   if ($check !== false) {
-       $uploadOk = 1;
-   } else {
-       echo "File is not an image.";
-       $uploadOk = 0;
-   }
-
-   // Check file size
-   if ($_FILES["image"]["size"] > 500000) {
-       echo "Sorry, your file is too large.";
-       $uploadOk = 0;
-   }
-
-   // Allow certain file formats
-   if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-       && $imageFileType != "gif") {
-       echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-       $uploadOk = 0;
-   }
-
-   if ($uploadOk == 0) {
-       echo "Sorry, your file was not uploaded.";
-   } else {
-       if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-           // File uploaded successfully, update or insert into the database
-           if ($action == 'edit' && !empty($id)) {
-               // Update the menu item in the database
-               $sql = "UPDATE menu_items SET name = '$name', price = '$price', image = '$target_file' WHERE id = $id";
-           } else {
-               // Insert the new menu item into the database
-               $sql = "INSERT INTO menu_items (name, price, image) VALUES ('$name', '$price', '$target_file')";
-           }
-
-           if ($conn->query($sql) === TRUE) {
-               echo "Menu item saved successfully.";
-           } else {
-               echo "Error: " . $sql . "<br>" . $conn->error;
-           }
-       } else {
-           echo "Sorry, there was an error uploading your file.";
-       }
-   }
-}
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- Basic meta tags, CSS, and other head content here -->
-</head>
-<body>
-    <div class="header_section header_bg">
-        <!-- Your header content here -->
-    </div>
-    
-    <div class="container">
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Edit Menu Item</title>
+                <!-- Basic meta tags, CSS, and other head content here -->
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Gulamomo bakery</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="images/fevicon.png" type="image/gif" />
+      <!-- font css -->
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+            </head>
+            <body>
         <div class="row">
             <div class="col-sm-12"><br><br><br><br>
-                <h1 class="contact_taital">Edit/Add Menu</h1>
+                <h1 class="contact_taital">Edit Menu</h1>
                 <div class="bulit_icon"><img src="images/menuimage.png"></div>
             </div>
         </div>
     </div>
-
     <div class="container">
-        <form method="POST" action="saveMenu.php" enctype="multipart/form-data">
-            <input type="hidden" name="action" value="<?php echo $action; ?>">
-            <input type="hidden" name="id" value="<?php echo $id; ?>">
-            <input type="text" class="mail_text" placeholder="Name" name="name" value="<?php echo $name; ?>">
-            <input type="number" class="mail_text" placeholder="Price" name="price" value="<?php echo $price; ?>">
-            <!-- Add a file input field for image uploads -->
-            <input type="file" class="mail_text" name="image">
+        <form method="POST" action="updateMenu.php">
+            <input type="hidden" name="id" value="<?php echo $row["id"]; ?>">
+            <label for="name">Name:</label>
+            <input type="text" class="mail_text" name="name" value="<?php echo $row["name"]; ?>"><br><br>
+            <label for="price">Price:</label>
+            <input type="text" class="mail_text" name="price" value="<?php echo $row["price"]; ?>" step="0.01">
             <br>
             <div class="text-center">
-                <button style="background-color: #007bff; color: #fff; border: none; padding: 10px 20px; cursor: pointer; margin-top: 20px; margin-bottom: 3in;" onmouseover="this.style.backgroundColor='#0056b3'" onmouseout="this.style.backgroundColor='#007bff'">UPDATE MENU</button>
+                <button style="background-color: #007bff; color: #fff; border: none; padding: 10px 20px; cursor: pointer; margin-top: 20px; margin-bottom: 3in;" onmouseover="this.style.backgroundColor='#0056b3'" onmouseout="this.style.backgroundColor='#007bff'" type="submit" name="update_menu">Update</button>
             </div>
         </form>
-        
     </div>
-      <!-- contact section end -->
+                 <!-- contact section end -->
       <!-- footer section start -->
       <div class="footer_section layout_padding">
          <div class="container">
@@ -170,4 +121,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <!-- copyright section end -->
       <!-- Javascript files-->
       <script src="js/jquery.min.js"></script>
-</body>
+            </body>
+            </html>
+
+            <?php
+        } else {
+            echo "Menu item not found.";
+        }
+    } else {
+        echo "Menu ID is not provided.";
+    }
+} else {
+    echo "Invalid action.";
+}
+?>

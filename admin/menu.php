@@ -94,7 +94,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <h3 class="card-title mb-0">Menu List</h3>
                             <!-- Add Menu -->
-                            <a href="editMenu.php?action=add" class="btn btn-primary">Add Menu</a>
+                            <a href="addMenu.php?action=add" class="btn btn-primary">Add Menu</a>
                         </div>
                         <table class="table table-bordered">
                             <thead>
@@ -106,52 +106,51 @@
                                 </tr>
                             </thead>
                             <tbody>
-    <?php
-    // Assuming you have a database connection established
-    // and a query to fetch customer data from your database
-    $servername = "localhost";
-    $username = "sd41";
-    $password = "sd41project";
-    $dbname = "db_sd_41_02";
+                            <?php
+// Assuming you have a database connection established
+// and a query to fetch customer data from your database
+$servername = "localhost";
+$username = "sd41";
+$password = "sd41project";
+$dbname = "db_sd_41_02";
 
-    // Create a connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Check the connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Query to fetch customer data from the database
+$customerSql = "SELECT id, name, price, image FROM menu_items ";
+$customerResult = $conn->query($customerSql);
+
+// Loop through the customer results and populate the table rows
+if ($customerResult->num_rows > 0) {
+    while ($row = $customerResult->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row["name"] . "</td>";
+        echo "<td>" . $row["price"] . "</td>";
+        echo '<td><img src="' . $row['image'] . '" height="200px" width="200px"></td>';
+       
+        echo '<td>
+                <a class="btn btn-primary" href="editMenu.php?action=edit&id=' . $row["id"] . '">Edit</a>
+                <form method="POST" action="deleteMenu.php">
+                    <input type="hidden" name="id" value="' . $row["id"] . '">
+                    <button type="submit" class="btn btn-danger" name="delete_menu">Delete</button>
+                </form>
+            </td>';
+        echo "</tr>";
     }
+} else {
+    echo "<tr><td colspan='4'>No customer data available</td></tr>";
+}
 
-    // Query to fetch customer data from the database
-    $customerSql = "SELECT id, name, price, image FROM menu_items ";
-    $customerResult = $conn->query($customerSql);
+// Close the database connection
+$conn->close();
+?>
 
-    // Loop through the customer results and populate the table rows
-    if ($customerResult->num_rows > 0) {
-        while ($row = $customerResult->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . $row["name"] . "</td>";
-            echo "<td>" . $row["price"] . "</td>";
-            echo '<td>';
-            $imagePath = "uploads/" . $row["image"];
-            
-            // Display the image using the new code
-            echo '<img src="' . $imagePath . '" alt="Menu Image" style="max-width: 100px; max-height: 100px;">';
-    
-            echo '</td>';
-    echo '<td>
-                    <a class="btn btn-primary" href="editMenu.php?action=edit&id=' . $row["id"] . '">Edit</a>
-                    <button class="btn btn-danger">Delete</button>
-                  </td>';
-            echo "</tr>";
-        }
-    } else {
-        echo "<tr><td colspan='4'>No customer data available</td></tr>";
-    }
-
-    // Close the database connection
-    $conn->close();
-    ?>
 </tbody>
 
                         </table>
