@@ -100,7 +100,7 @@
                       <thead>
                           <tr>
                               <th>Name</th>
-                              <th>Price</th>
+                              <th>Price (RM)</th>
                               <th>Picture</th>
                            
                           </tr>
@@ -123,16 +123,16 @@
                           }
 
                           // Query to fetch customer data from the database
-                          $customerSql = "SELECT Username, Email, userType FROM user WHERE userType = 'customer'";
+                          $customerSql = "SELECT id, name, price, image FROM menu_items ";
                           $customerResult = $conn->query($customerSql);
 
                           // Loop through the customer results and populate the table rows
                           if ($customerResult->num_rows > 0) {
                               while ($row = $customerResult->fetch_assoc()) {
                                   echo "<tr>";
-                                  echo "<td>" . $row["Username"] . "</td>";
-                                  echo "<td>" . $row["Email"] . "</td>";
-                                  echo "<td>" . $row["userType"] . "</td>";
+                                  echo "<td>" . $row["name"] . "</td>";
+                                  echo "<td>" . $row["price"] . "</td>";
+                                  echo '<td><img src="' . $row['image'] . '" height="200px" width="200px"></td>';
                                   echo '<td>
                                           <button class="btn btn-primary">Add to Cart</button>
                                           

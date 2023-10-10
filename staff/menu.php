@@ -32,7 +32,7 @@
       <div class="header_section">
          <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="indexAdmin.php">
+                <a class="navbar-brand" href="indexStaff.php">
                     <img src="images/logo.png" alt="Logo" style="width: 400px; height: 80px;">
                 </a>
                   
@@ -42,7 +42,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="indexAdmin.php">Home</a>
+                            <a class="nav-link" href="indexStaff.php">Home</a>
                         </li>
                     
                         <li class="nav-item">
@@ -54,12 +54,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="customer.html">Customer</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="editStaff.html">Staff</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="staff.html">Add Staff</a>
                         </li>
                     </ul>
 
