@@ -107,6 +107,9 @@
                       </thead>
                       <tbody>
                           <?php
+                          error_reporting(E_ALL);
+                          ini_set('display_errors', '1');
+                          
                           // Assuming you have a database connection established
                           // and a query to fetch customer data from your database
                           $servername = "localhost";
