@@ -10,7 +10,7 @@ function sendOTPToRegisterEmail(){
 	$message = "Hi, This is your OTP - ".$otp;
 	$headers  = 'MIME-Version: 1.0' . "\r\n";
 	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-	mail($emailToSend,"Account Registration on KFC Residency online ordering",$message,$headers);
+	mail($emailToSend,"Account Registration on Gulamomo online ordering",$message,$headers);
 	
 	$con=mysqli_connect("localhost","sd41","sd41project","db_sd_41_02");
 	$sql = "insert into user_otp(email,otp) values('$emailToSend','$otp')";
