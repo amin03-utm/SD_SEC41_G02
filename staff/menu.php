@@ -34,161 +34,178 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="indexAdmin.php">
                     <img src="images/logo.png" alt="Logo" style="width: 400px; height: 80px;">
-                  </a>
+                </a>
                   
-               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-               <span class="navbar-toggler-icon"></span>
-               </button>
-               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav ml-auto">
-                     <li class="nav-item">
-                        <a class="nav-link" href="indexStaff.php">Home</a>
-                     </li>
-                     
-                     <li class="nav-item">
-                        <a class="nav-link" href="menu.html">Menu</a>
-                     </li>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="indexAdmin.php">Home</a>
+                        </li>
                     
-                     <li class="nav-item">
-                      <a class="nav-link" href="editProfile.html">Profile</a>
-                      <li class="nav-item">
-                         <a class="nav-link" href="Customer.html">Customer</a>
-                      </li>
-                   </li>
- 
-                  </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="menu.php">Menu</a>
+                        </li>
+                   
+                        <li class="nav-item">
+                            <a class="nav-link" href="editProfile.html">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="customer.html">Customer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="editStaff.html">Staff</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="staff.html">Add Staff</a>
+                        </li>
+                    </ul>
 
-                 <!--log out-->
-                 <form class="form-inline my-2 my-lg-0">
-                  <div class="login_bt">
-                      <ul style="display: flex; list-style-type: none; padding: 0;">
-                          <li style="margin-right: 1px; font-size: 5px;"><a href="logout.php"><span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>Logout</a></li>
-                          
-                      </ul>
-                  </div>
-              </form>
-              
-               
-                  
-               </div>
+                    <!-- Logout -->
+                    <form class="form-inline my-2 my-lg-0">
+                        <div class="login_bt">
+                            <ul style="display: flex; list-style-type: none; padding: 0;">
+                                <li style="margin-right: 1px; font-size: 5px;"><a href="logout.php"><span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>Logout</a></li>
+                            </ul>
+                        </div>
+                    </form>
+                    <!-- Cart -->
+                    <form class="form-inline my-2 my-lg-0">
+                        <div class="login_bt">
+                            <ul>
+                                <li><a class="nav-link" href="#" id="addToCartButton"><span class="cart_icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span> Cart</a></li>
+                            </ul>
+                        </div>
+                    </form>
+
+                </div>
             </nav>
          </div>
-   <!--menu list-->
-   <main class="content">
-      <div class="container-fluid p-1">
-          <h1 style="margin-top: 10px;"  class="h2 mb-3"><strong>Menu Setting</strong></h1>
+    
+         <!-- Menu list -->
+         <main class="content">
+            <div class="container-fluid p-1">
+                <h1 class="h2 mb-3"><strong>Menu Setting</strong></h1>
 
-          <div class="card">
-             <div class="card-body">
-                 <div class="d-flex justify-content-between align-items-center">
-                     <h3 class="card-title mb-0">Menu List</h3>
-                     <!-- Add Menu -->
-                     <a href="editMenuStaff.php" class="btn btn-primary">Add Menu</a>
-                 </div>
-                  <table class="table table-bordered">
-                      <thead>
-                          <tr>
-                              <th>Name</th>
-                              <th>Price</th>
-                              <th>Picture</th>
-                           
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <?php
-                          // Assuming you have a database connection established
-                          // and a query to fetch customer data from your database
-                          $servername = "localhost";
-                          $username = "sd41";
-                          $password = "sd41project";
-                          $dbname = "db_sd_41_02";
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h3 class="card-title mb-0">Menu List</h3>
+                            <!-- Add Menu -->
+                            <a href="addMenu.php?action=add" class="btn btn-primary">Add Menu</a>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Image</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+// Assuming you have a database connection established
+// and a query to fetch customer data from your database
+$servername = "localhost";
+$username = "sd41";
+$password = "sd41project";
+$dbname = "db_sd_41_02";
 
-                          // Create a connection
-                          $conn = new mysqli($servername, $username, $password, $dbname);
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-                          // Check the connection
-                          if ($conn->connect_error) {
-                              die("Connection failed: " . $conn->connect_error);
-                          }
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-                          // Query to fetch customer data from the database
-                          $customerSql = "SELECT Username, Email, userType FROM user WHERE userType = 'customer'";
-                          $customerResult = $conn->query($customerSql);
+// Query to fetch customer data from the database
+$customerSql = "SELECT id, name, price, image FROM menu_items ";
+$customerResult = $conn->query($customerSql);
 
-                          // Loop through the customer results and populate the table rows
-                          if ($customerResult->num_rows > 0) {
-                              while ($row = $customerResult->fetch_assoc()) {
-                                  echo "<tr>";
-                                  echo "<td>" . $row["Username"] . "</td>";
-                                  echo "<td>" . $row["Email"] . "</td>";
-                                  echo "<td>" . $row["userType"] . "</td>";
-                                  echo '<td>
-                                          <button class="btn btn-primary">Edit</button>
-                                          <button class="btn btn-danger">Delete</button>
-                                        </td>';
-                                  echo "</tr>";
-                              }
-                          } else {
-                              echo "<tr><td colspan='3'>No customer data available</td></tr>";
-                          }
-                          ?>
-                      </tbody>
-                  </table>
-              </div>
-          </div>
+// Loop through the customer results and populate the table rows
+if ($customerResult->num_rows > 0) {
+    while ($row = $customerResult->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row["name"] . "</td>";
+        echo "<td>" . $row["price"] . "</td>";
+        echo '<td><img src="' . $row['image'] . '" height="200px" width="200px"></td>';
+       
+        echo '<td>
+                <a class="btn btn-primary" href="editMenu.php?action=edit&id=' . $row["id"] . '">Edit</a>
+                <form method="POST" action="deleteMenu.php">
+                    <input type="hidden" name="id" value="' . $row["id"] . '">
+                    <button type="submit" class="btn btn-danger" name="delete_menu">Delete</button>
+                </form>
+            </td>';
+        echo "</tr>";
+    }
+} else {
+    echo "<tr><td colspan='4'>No customer data available</td></tr>";
+}
 
-          <br><br>
-      
-          <!-- blog section end -->
+// Close the database connection
+$conn->close();
+?>
 
-    <!-- footer section start -->
-    <div class="footer_section layout_padding">
-      <div class="container">
-         <div class="row">
-            <div class="col-md-12">
-               <h1 class="address_text">Contact Us</h1>
-               <p class="footer_text">Madrasatul kiramah, Lot kedai no 3, Jalan Keramat, Kampung Datuk Keramat, 54000 Kuala Lumpur, Federal Territory of Kuala Lumpur </p>
-               <div class="location_text">
-                  <ul>
-                     <li>
-                        <a href="#">
-                        <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10">+6012-9336952</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="#">
-                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">gulamomobakery@gmail.com</span>
-                        </a>
-                     </li>
-                  </ul>
-               </div>
-              
+</tbody>
+
+                        </table>
+                    </div>
+                </div>
+
+                <br><br>
             </div>
-         </div>
-      </div>
-   </div>
-    <!-- footer section end -->
-      <!-- copyright section start -->
-      <div class="copyright_section">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-6 col-sm-12">
-                  <p class="copyright_text">2023 All Rights Reserved.</a></p>
-               </div>
-              
+        </main>
+
+        <!-- Footer section -->
+        <div class="footer_section layout_padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="address_text">Contact Us</h1>
+                        <p class="footer_text">Madrasatul kiramah, Lot kedai no 3, Jalan Keramat, Kampung Datuk Keramat, 54000 Kuala Lumpur, Federal Territory of Kuala Lumpur </p>
+                        <div class="location_text">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10">+6012-9336952</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">gulamomobakery@gmail.com</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-      <!-- copyright section end -->
-      <!-- Javascript files-->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <script src="js/plugin.js"></script>
-      
-      <!-- sidebar -->
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>
-   </body>
+        </div>
+        <!-- Footer section end -->
+        <!-- Copyright section -->
+        <div class="copyright_section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        <p class="copyright_text">2023 All Rights Reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright section end -->
+        <!-- Javascript files -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/jquery-3.0.0.min.js"></script>
+        <script src="js/plugin.js"></script>
+        <!-- Sidebar -->
+        <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="js/custom.js"></script>
+    </body>
 </html>
