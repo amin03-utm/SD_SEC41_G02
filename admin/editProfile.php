@@ -1,43 +1,61 @@
 <?php
-$servername = "localhost"; // Replace with your database server name
-$username = "sd41"; // Replace with your database username
-$password = "sd41project"; // Replace with your database password
-$dbname = "db_sd_41_02"; // Replace with your database name
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
-// Create a connection
+$servername = "localhost";
+$username = "sd41";
+$password = "sd41project";
+$dbname = "db_sd_41_02";
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check the connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-session_start(); // Start the session (if not already started)
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_SESSION["user_email"]; // Assuming you have a user's email stored in the session
+    $email = $_SESSION["user_email"];
+    $update = false; // Flag to check if any updates were made
     
-    $username = $_POST["Username"];
-    $newPassword = $_POST["new_password"];
-
-    // Update the user's profile in the database
-    // Replace 'your_table_name' with your actual table name
-    $sql = "UPDATE user SET Username = ?, password = ? WHERE email = ?";
+    // Check if "Username" is provided and different from the current value
+    if (isset($_POST["Username"]) && $_POST["Username"] !== "") {
+        $newUsername = $_POST["Username"];
         
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $username, $newPassword, $email);
+        // Update the "Username" field in the database
+        $stmt = $conn->prepare("UPDATE user SET Username = ? WHERE email = ?");
+        $stmt->bind_param("ss", $newUsername, $email);
         
-    if ($stmt->execute()) {
-        $_SESSION["update_success"] = "Profile updated successfully.";
-        header("Location: editProfile.html"); // Redirect back to the edit profile page
-        exit();
-    } else {
-        $_SESSION["update_error"] = "Error updating profile: " . $stmt->error;
-        header("Location: editProfile.html"); // Redirect back to the edit profile page
-        exit();
+        if ($stmt->execute()) {
+            $update = true; // Username updated
+        } else {
+            $_SESSION["update_error"] = "Error updating Username: " . $stmt->error;
+        }
     }
-}
 
-// Close the database connection
-$conn->close();
+    // Check if "new_password" is provided and different from the current value
+    if (isset($_POST["new_password"]) && $_POST["new_password"] !== "") {
+        $newPassword = $_POST["new_password"];
+        
+        // Update the "password" field in the database
+        $stmt = $conn->prepare("UPDATE user SET password = ? WHERE email = ?");
+        $stmt->bind_param("ss", $newPassword, $email);
+        
+        if ($stmt->execute()) {
+            $update = true; // Password updated
+        } else {
+            $_SESSION["update_error"] = "Error updating password: " . $stmt->error;
+        }
+    }
+    
+    if ($update) {
+        $_SESSION["update_success"] = "Profile updated successfully.";
+    } else if (!isset($_SESSION["update_error"])) {
+        $_SESSION["update_error"] = "No data provided for update.";
+    }
+
+    header("Location: editProfile.html"); // Redirect to editProfile.html
+    exit();
+}
 ?>
