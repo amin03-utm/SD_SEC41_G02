@@ -100,7 +100,7 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Price</th>
+                                    <th>Price (RM)</th>
                                     <th>Image</th>
                                     <th>Action</th>
                                 </tr>

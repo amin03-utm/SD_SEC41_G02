@@ -93,7 +93,7 @@
                       <thead>
                           <tr>
                               <th>Name</th>
-                              <th>Price(RM)</th>
+                              <th>Price (RM)</th>
                               <th>Picture</th>
                            
                           </tr>
