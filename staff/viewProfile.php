@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gulamomo Bakery Login</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))></style>
 </head>
@@ -13,11 +14,11 @@
   <div class="mask d-flex align-items-center h-100 gradient-custom-3">
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6" >
           <div class="card" style="border-radius: 15px;">
-            <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">User Profile</h2>
-              <div class="bulit_icon"><img src="images/user_icon.jpg"></div>
+          <div class="card-body p-5" style="background-color: pink; border-radius: 15px;">
+              <h2 class="text-uppercase text-center mb-5 ">User Profile</h2>
+              <div class="bulit_icon"  ><img src="images/user_icon.jpg"></div>
 
 </body>
 
@@ -56,7 +57,7 @@ if (isset($_SESSION['user_email'])) {
     // Display the user's profile
     echo "<html><head><link rel='stylesheet' type='text/css' href='css/style.css'></head><body>";
     echo "<div class='container'>";
-    echo "<p>Email: $userEmail</p>"; // Change "Username" to "email"
+    echo "<p style='color: black;'>Email: $userEmail</p>"; // Change "Username" to "email"
 
     // Retrieve additional user information from the database
     $userName = "";
@@ -70,11 +71,11 @@ if (isset($_SESSION['user_email'])) {
         $userPass = $row["password"]; // Assuming 'userType' is the column name
 
     }
-
-    echo "<p>Username: $userName</p>";
-    echo "<p>Password: $userPass</p>";
-    echo "<p>User Type: $userType</p>";
-
+   
+    echo "<p style='color: black;'>Username: $userName</p>";
+    echo "<p style='color: black;'>Password: $userPass</p>";
+    echo "<p style='color: black;'>User Type: $userType</p>";
+    
 
     // Display other profile information here
     echo "</div></body></html>";

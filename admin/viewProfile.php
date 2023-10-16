@@ -8,16 +8,17 @@
     <style linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))></style>
 </head>
 <body>
-    <section class="vh-100 bg-image"
+<section class="vh-100 bg-image"
   style="background-image: url('https://images.hdqwalls.com/download/chocolate-dessert-pastry-cake-5k-yw-2560x1440.jpg');">
   <div class="mask d-flex align-items-center h-100 gradient-custom-3">
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6" >
           <div class="card" style="border-radius: 15px;">
-            <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">User Profile</h2>
-              <div class="bulit_icon"><img src="images/user_icon.jpg"></div>
+          <div class="card-body p-5" style="background-color: pink; border-radius: 15px;">
+              <h2 class="text-uppercase text-center mb-5 ">User Profile</h2>
+              <div class="bulit_icon"  ><img src="images/user_icon.jpg"></div>
+
 
 </body>
 
@@ -56,7 +57,7 @@ if (isset($_SESSION['user_email'])) {
     // Display the user's profile
     echo "<html><head><link rel='stylesheet' type='text/css' href='css/style.css'></head><body>";
     echo "<div class='container'>";
-    echo "<p>Email: $userEmail</p>"; // Change "Username" to "email"
+    echo "<p style='color: black;'>Email: $userEmail</p>"; // Change "Username" to "email"
 
     // Retrieve additional user information from the database
     $userName = "";
@@ -70,11 +71,11 @@ if (isset($_SESSION['user_email'])) {
         $userPass = $row["password"]; // Assuming 'userType' is the column name
 
     }
-
-    echo "<p>Username: $userName</p>";
-    echo "<p>Password: $userPass</p>";
-    echo "<p>User Type: $userType</p>";
-
+   
+    echo "<p style='color: black;'>Username: $userName</p>";
+    echo "<p style='color: black;'>Password: $userPass</p>";
+    echo "<p style='color: black;'>User Type: $userType</p>";
+    
 
     // Display other profile information here
     echo "</div></body></html>";
@@ -86,3 +87,4 @@ if (isset($_SESSION['user_email'])) {
     echo "User is not logged in. Please log in to view your profile.";
 }
 ?>
+
