@@ -73,6 +73,8 @@
                       </ul>
                   </div>
               </form>
+
+              
               
                
                   
@@ -93,6 +95,69 @@
                 <div class="card-body">
                     <h3 class="card-title"><b>Customer List</b></h3>
                     <table class="table table-bordered">
+
+                    <?php
+// Database connection setup (you need to replace these values with your own)
+$servername = "localhost";
+$username = "sd41";
+$password = "sd41project";
+$dbname = "db_sd_41_02";
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // Retrieve data and count staff and customers
+    $sql = "SELECT userType, COUNT(*) as count FROM user WHERE userType = 'Customer' GROUP BY userType";
+    $result = $conn->query($sql);
+
+    $userTypes = [];
+    $userCounts = [];
+    while ($row = $result->fetch()) {
+        $userTypes[] = $row['userType'];
+        $userCounts[] = $row['count'];
+    }
+    
+    // Close the database connection
+    $conn = null;
+} catch(PDOException $e) {
+    echo "Database Connection failed: " . $e->getMessage();
+}
+
+// Include the Chart.js library
+echo '<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>';
+
+// Create a bar chart using Chart.js
+echo '<div style="width: 50%; margin: 0 auto;">';
+echo '<canvas id="userChart"></canvas>';
+echo '</div>';
+
+// JavaScript to create the chart
+echo '<script>
+    var ctx = document.getElementById("userChart").getContext("2d");
+    var userChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ' . json_encode($userTypes) . ',
+            datasets: [{
+                label: "User Types",
+                data: ' . json_encode($userCounts) . ',
+                backgroundColor: ["rgba(75, 192, 192, 0.2)", "rgba(255, 99, 132, 0.2)"],
+                borderColor: ["rgba(75, 192, 192, 1)", "rgba(255, 99, 132, 1)"],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>';
+?>
+
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -157,6 +222,65 @@
     <div class="card-body">
         <h3 class="card-title"><b>Staff List</b></h3>
         <table class="table table-bordered">
+
+        <?php
+// Database connection setup (you need to replace these values with your own)
+$servername = "localhost";
+$username = "sd41";
+$password = "sd41project";
+$dbname = "db_sd_41_02";
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // Retrieve data and count staff
+    $sql = "SELECT COUNT(*) as staff_count FROM user WHERE userType = 'Staff'";
+    $result = $conn->query($sql);
+    
+    $staffCount = $result->fetchColumn();
+    
+    // Close the database connection
+    $conn = null;
+} catch(PDOException $e) {
+    echo "Database Connection failed: " . $e->getMessage();
+}
+
+// Include the Chart.js library
+echo '<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>';
+
+// Create a bar chart using Chart.js
+echo '<div style="width: 50%; margin: 0 auto;">';
+echo '<canvas id="staffChart"></canvas>';
+echo '</div>';
+
+// JavaScript to create the chart
+echo '<script>
+    var ctx = document.getElementById("staffChart").getContext("2d");
+    var staffChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["Staff"],
+            datasets: [{
+                label: "Staff Count",
+                data: [' . $staffCount . '],
+                backgroundColor: "rgba(54, 162, 235, 0.2)", // Blue background color
+                borderColor: "rgba(54, 162, 235, 1)", // Blue border color
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>';
+?>
+
+
             <thead>
                 <tr>
                     <th>Name</th>

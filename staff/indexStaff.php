@@ -67,39 +67,103 @@
                       </ul>
                   </div>
               </form>
+
+              
               
                
                   
                </div>
             </nav>
          </div>
-         <!-- banner section start --> 
-         <main class="content">
-				<div class="container-fluid p-0">
+    <div class="header_section">
+        <div class="container-fluid">
+            <!-- Your Navigation Bar Content Here -->
+        </div>
+    </div>
+    <main class="content">
+        <div class="container-fluid p-0">
+            <h1 class="h2 mb-3"><strong>Analytics</strong> Dashboard</h1>
 
-					<h1 class="h2 mb-3"><strong>Analytics</strong> Dashboard</h1>
+            <!-- Customer List Table -->
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title"><b>Customer List</b></h3>
+                    <table class="table table-bordered">
 
-					<div class="row">
-						
-						<!-- Add a div with the "card" class and white background -->
-						<div class="card">
-							<div class="card-body">
-								<!-- Customer List Table -->
-								<h3 class="card-title"><b>Customer List</b></h5>
-								<table class="table table-bordered" >
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Email</th>
-                                 <th>User Type</th>
-											<th>Action</th>
-										</tr>
-									</thead>
-									<tbody>
+                    <?php
+// Database connection setup (you need to replace these values with your own)
+$servername = "localhost";
+$username = "sd41";
+$password = "sd41project";
+$dbname = "db_sd_41_02";
 
-                           <?php
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // Retrieve data and count staff and customers
+    $sql = "SELECT userType, COUNT(*) as count FROM user WHERE userType = 'Customer' GROUP BY userType";
+    $result = $conn->query($sql);
+
+    $userTypes = [];
+    $userCounts = [];
+    while ($row = $result->fetch()) {
+        $userTypes[] = $row['userType'];
+        $userCounts[] = $row['count'];
+    }
+    
+    // Close the database connection
+    $conn = null;
+} catch(PDOException $e) {
+    echo "Database Connection failed: " . $e->getMessage();
+}
+
+// Include the Chart.js library
+echo '<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>';
+
+// Create a bar chart using Chart.js
+echo '<div style="width: 50%; margin: 0 auto;">';
+echo '<canvas id="userChart"></canvas>';
+echo '</div>';
+
+// JavaScript to create the chart
+echo '<script>
+    var ctx = document.getElementById("userChart").getContext("2d");
+    var userChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ' . json_encode($userTypes) . ',
+            datasets: [{
+                label: "User Types",
+                data: ' . json_encode($userCounts) . ',
+                backgroundColor: ["rgba(75, 192, 192, 0.2)", "rgba(255, 99, 132, 0.2)"],
+                borderColor: ["rgba(75, 192, 192, 1)", "rgba(255, 99, 132, 1)"],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>';
+?>
+
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>User Type</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
                             // Assuming you have a database connection established
-                            // and a query to fetch staff data from your database
+                            // and a query to fetch customer data from your database
                             $servername = "localhost";
                             $username = "sd41";
                             $password = "sd41project";
@@ -113,50 +177,53 @@
                                 die("Connection failed: " . $conn->connect_error);
                             }
 
-                            // Query to fetch staff data from the database
-                            $staffSql = "SELECT Username, Email, userType FROM user WHERE userType = 'customer'";
-                            $staffResult = $conn->query($staffSql);
+                            // Query to fetch customer data from the database
+                            $customerSql = "SELECT Username, Email, userType FROM user WHERE userType = 'customer'";
+                            $customerResult = $conn->query($customerSql);
 
-                            // Loop through the staff results and populate the table rows
-                            if ($staffResult->num_rows > 0) {
-                                while ($row = $staffResult->fetch_assoc()) {
+                            // Loop through the customer results and populate the table rows
+                            if ($customerResult->num_rows > 0) {
+                                while ($row = $customerResult->fetch_assoc()) {
                                     echo "<tr>";
                                     echo "<td>" . $row["Username"] . "</td>";
                                     echo "<td>" . $row["Email"] . "</td>";
                                     echo "<td>" . $row["userType"] . "</td>";
                                     echo '<td>
+                                    
                                     <a href="Customer.html" class="btn btn-primary">Edit</a>
                                             <form action="deleteFunctionStaff.php" method="POST">
-                                            <input type="hidden" name="user_email" value="' . $row["Email"] . '">
-                                            <button type="submit" name="delete_staff" class="btn btn-danger">Delete</button>
-                                          </form>
+    <input type="hidden" name="user_email" value="' . $row["Email"] . '">
+    <button type="submit" name="delete_staff" class="btn btn-danger">Delete</button>
+</form>
                                           </td>';
                                     echo "</tr>";
                                 }
                             } else {
-                                echo "<tr><td colspan='3'>No staff data available</td></tr>";
+                                echo "<tr><td colspan='3'>No customer data available</td></tr>";
                             }
                             ?>
-									</tbody>
-								</table>
-							</div>
-						</div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-						<br><br><br>
-						
-						
-						
-						
+            <!-- Spacing between tables -->
+            <br><br><br>
 
-						
-				
+            <!-- Staff List Table -->
+            <!-- Staff List Table -->
+
+
+            <!-- blog section end -->
+      <!-- contact section start -->
+     
+      <!-- contact section end -->
       <!-- footer section start -->
-      
       <div class="footer_section layout_padding">
         <div class="container">
            <div class="row">
               <div class="col-md-12">
-                 <h1 class="address_text">Address</h1>
+                 <h1 class="address_text">Contact Us</h1>
                  <p class="footer_text">Madrasatul kiramah, Lot kedai no 3, Jalan Keramat, Kampung Datuk Keramat, 54000 Kuala Lumpur, Federal Territory of Kuala Lumpur </p>
                  <div class="location_text">
                     <ul>
@@ -199,5 +266,6 @@
       <!-- sidebar -->
       <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="js/custom.js"></script>
-   </body>
+
+</body>
 </html>
