@@ -100,7 +100,7 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     // Retrieve data and count all user types
-    $sql = "SELECT userType, COUNT(*) as count FROM user WHERE userType IN ('Staff', 'Customer') GROUP BY userType";
+    $sql = "SELECT userType, COUNT(*) as count FROM user WHERE userType IN ('Customer') GROUP BY userType";
     $result = $conn->query($sql);
 
     $userTypes = [];
