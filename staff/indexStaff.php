@@ -84,13 +84,11 @@
         <div class="container-fluid p-0">
             <h1 class="h2 mb-3"><strong>Analytics</strong> Dashboard</h1>
 
-            <!-- Customer List Table -->
             <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title"><b>Customer List</b></h3>
-                    <table class="table table-bordered">
+    <div class="card-body">
+        <h3 class="card-title"><b>Graph</b></h3>
 
-                    <?php
+        <?php
 // Database connection setup (you need to replace these values with your own)
 $servername = "localhost";
 $username = "sd41";
@@ -101,15 +99,29 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    // Retrieve data and count staff and customers
-    $sql = "SELECT userType, COUNT(*) as count FROM user WHERE userType = 'Customer' GROUP BY userType";
+    // Retrieve data and count all user types
+    $sql = "SELECT userType, COUNT(*) as count FROM user WHERE userType IN ('Staff', 'Customer') GROUP BY userType";
     $result = $conn->query($sql);
 
     $userTypes = [];
     $userCounts = [];
+    $backgroundColors = []; // Array for bar background colors
+    $borderColors = [];     // Array for bar border colors
+    
+    // Define an array of colors (you can customize these colors)
+    $colors = ["rgba(75, 192, 192, 0.2)", "rgba(255, 99, 132, 0.2)", "rgba(255, 206, 86, 0.2)", "rgba(54, 162, 235, 0.2)"];
+
+    $colorIndex = 0; // Initialize the color index
+    
     while ($row = $result->fetch()) {
         $userTypes[] = $row['userType'];
         $userCounts[] = $row['count'];
+        
+        // Assign background and border colors based on the color array
+        $backgroundColors[] = $colors[$colorIndex];
+        $borderColors[] = str_replace("0.2", "1", $colors[$colorIndex]);
+        
+        $colorIndex = ($colorIndex + 1) % count($colors); // Cycle through colors
     }
     
     // Close the database connection
@@ -126,7 +138,7 @@ echo '<div style="width: 50%; margin: 0 auto;">';
 echo '<canvas id="userChart"></canvas>';
 echo '</div>';
 
-// JavaScript to create the chart
+// JavaScript to create the chart with different colors for each userType and legend box colors
 echo '<script>
     var ctx = document.getElementById("userChart").getContext("2d");
     var userChart = new Chart(ctx, {
@@ -136,8 +148,8 @@ echo '<script>
             datasets: [{
                 label: "User Types",
                 data: ' . json_encode($userCounts) . ',
-                backgroundColor: ["rgba(75, 192, 192, 0.2)", "rgba(255, 99, 132, 0.2)"],
-                borderColor: ["rgba(75, 192, 192, 1)", "rgba(255, 99, 132, 1)"],
+                backgroundColor: ' . json_encode($backgroundColors) . ',
+                borderColor: ' . json_encode($borderColors) . ',
                 borderWidth: 1
             }]
         },
@@ -146,11 +158,24 @@ echo '<script>
                 y: {
                     beginAtZero: true
                 }
+            },
+            legend: {
+                labels: {
+                    boxWidth: 15, // Adjust the box width for the legend
+                }
             }
         }
     });
 </script>';
 ?>
+    </div>
+            </div>
+
+            <!-- Customer List Table -->
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title"><b>Customer List</b></h3>
+                    <table class="table table-bordered">
 
                         <thead>
                             <tr>
