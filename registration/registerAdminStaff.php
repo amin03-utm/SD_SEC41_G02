@@ -47,7 +47,7 @@ if (isset($_POST['submit'])) {
             echo '</div>';
             echo '<br><br><br><a class="w3-text-blue" href="registerAdminStaff.html"><b>Try Again</b></a>';
         // Check if the provided code is correct based on user type
-        } else if ($userType == 'Admin' && $secretCode == $adminSecretCode) {
+        } else if ($userType == 'Admin' && $userCode == $adminSecretCode) {
             // Code is correct for admin, proceed with admin registration
             $sql = "INSERT INTO user (Username, Email, Password, userType) VALUES ('$Username', '$Email', '$password', '$userType')";
             if (mysqli_query($conn, $sql)) {
@@ -59,7 +59,7 @@ if (isset($_POST['submit'])) {
                 echo '</div>';
                 echo '<br><br><br><a class="w3-text-blue" href="registerAdminStaff.html"><b>Try Again</b></a>';
             }
-        } elseif ($userType == 'Staff' && $secretCode == $staffSecretCode) {
+        } elseif ($userType == 'Staff' && $userCode == $staffSecretCode) {
             // Code is correct for staff, proceed with staff registration
             $sql = "INSERT INTO user (Username, Email, Password, userType) VALUES ('$Username', '$Email', '$password', '$userType')";
             if (mysqli_query($conn, $sql)) {
