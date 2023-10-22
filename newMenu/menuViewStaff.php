@@ -32,7 +32,7 @@
     </style>
 </head>
 <body>
-    <h1>Order Dashboard (Admin)</h1>
+    <h1>Order Dashboard (Staff)</h1>
 
     <?php
     session_start();
@@ -94,6 +94,6 @@
     }
     ?>
 
-    <a href="../admin/indexAdmin.php">Back to Admin Dashboard</a>
+    <a href="../admin/indexAdmin.php">Back to Staff Dashboard</a>
 </body>
 </html>
