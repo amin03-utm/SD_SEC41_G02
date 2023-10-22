@@ -221,13 +221,15 @@ echo '<script>
                                     echo "<td>" . $row["Email"] . "</td>";
                                     echo "<td>" . $row["userType"] . "</td>";
                                     echo '<td>
-                                    
-                                    <a href="Customer.html" class="btn btn-primary">Edit</a>
-                                            <form action="deleteFunctionAdmin.php" method="POST">
-    <input type="hidden" name="user_email" value="' . $row["Email"] . '">
-    <button type="submit" name="delete_staff" class="btn btn-danger">Delete</button>
-</form>
-                                          </td>';
+    <div class="btn-group-vertical">
+        <a href="../newMenu/menuViewAdmin.php?user_email=' . $row["Email"] . '" class="btn btn-success mb-2">View Menu</a>
+        <a href="Customer.html" class="btn btn-primary mb-2">Edit</a>
+    </div>
+    <form action="deleteFunctionAdmin.php" method="POST">
+        <input type="hidden" name="user_email" value="' . $row["Email"] . '">
+        <button type="submit" name="delete_staff" class="btn btn-danger">Delete</button>
+    </form>
+</td>';
                                     echo "</tr>";
                                 }
                             } else {
@@ -286,13 +288,13 @@ echo '<script>
                         echo "<td>" . $row["Email"] . "</td>";
                         echo "<td>" . $row["userType"] . "</td>";
                         echo '<td>
-                        <a href="editStaff.html" class="btn btn-primary">Edit</a>
-                        <form action="deleteFunctionAdmin.php" method="POST">
-    <input type="hidden" name="user_email" value="' . $row["Email"] . '">
-    <button type="submit" name="delete_staff" class="btn btn-danger">Delete</button>
-</form>
+    <a href="editStaff.html" class="btn btn-primary" style="margin-top: 10px;">Edit</a>
+    <form action="deleteFunctionAdmin.php" method="POST">
+        <input type="hidden" name="user_email" value="' . $row["Email"] . '">
+        <button type="submit" name="delete_staff" class="btn btn-danger" style="margin-top: 10px;">Delete</button>
+    </form>
+</td>';
 
-                              </td>';
                         echo "</tr>";
                     }
                 } else {

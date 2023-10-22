@@ -62,7 +62,7 @@
                      <div class="login_bt">
                         <ul>
                            
-                           <li><a class="nav-link" href="#" id="addToCartButton"><span class="cart_icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span> Cart</a>
+                           <li><a class="nav-link" href="cart.php" id="addToCartButton"><span class="cart_icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span> Cart</a>
                         </ul>
                      </div>
                   </form>
@@ -138,21 +138,25 @@
                           $customerResult = $conn->query($customerSql);
 
                           // Loop through the customer results and populate the table rows
-                          if ($customerResult->num_rows > 0) {
-                              while ($row = $customerResult->fetch_assoc()) {
-                                  echo "<tr>";
-                                  echo "<td>" . $row["name"] . "</td>";
-                                  echo "<td>" . $row["price"] . "</td>";
-                                  echo '<td><img src="' . $row['image'] . '" height="200px" width="200px"></td>';
-                                  echo '<td>
-                                          <button class="btn btn-primary">Add to Cart</button>
-                                          
-                                        </td>';
-                                  echo "</tr>";
-                              }
-                          } else {
-                              echo "<tr><td colspan='3'>No menu data available</td></tr>";
-                          }
+if ($customerResult->num_rows > 0) {
+   while ($row = $customerResult->fetch_assoc()) {
+       echo "<tr>";
+       echo "<td>" . $row["name"] . "</td>";
+       echo "<td>" . $row["price"] . "</td>";
+       echo '<td><img src="' . $row['image'] . '" height="200px" width="200px"></td>';
+       echo '<td>
+           <form action="addToCart.php" method="post">
+               <input type="hidden" name="item_id" value="' . $row["id"] . '">
+               <input type="hidden" name="item_name" value="' . $row["name"] . '">
+               <input type="hidden" name="item_price" value="' . $row["price"] . '">
+               <button class="btn btn-primary" type="submit" name="add_to_cart">Add to Cart</button>
+           </form>
+       </td>';
+       echo "</tr>";
+   }
+} else {
+   echo "<tr><td colspan='4'>No menu data available</td></tr>";
+}
                           ?>
                       </tbody>
                   </table>

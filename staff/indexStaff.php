@@ -214,13 +214,15 @@ echo '<script>
                                     echo "<td>" . $row["Email"] . "</td>";
                                     echo "<td>" . $row["userType"] . "</td>";
                                     echo '<td>
-                                    
-                                    <a href="Customer.html" class="btn btn-primary">Edit</a>
-                                            <form action="deleteFunctionStaff.php" method="POST">
-    <input type="hidden" name="user_email" value="' . $row["Email"] . '">
-    <button type="submit" name="delete_staff" class="btn btn-danger">Delete</button>
-</form>
-                                          </td>';
+    <div class="btn-group-vertical">
+        <a href="../newMenu/menuViewStaff.php?user_email=' . $row["Email"] . '" class="btn btn-success mb-2">View Menu</a>
+        <a href="Customer.html" class="btn btn-primary mb-2">Edit</a>
+    </div>
+    <form action="deleteFunctionAdmin.php" method="POST">
+        <input type="hidden" name="user_email" value="' . $row["Email"] . '">
+        <button type="submit" name="delete_staff" class="btn btn-danger">Delete</button>
+    </form>
+</td>';
                                     echo "</tr>";
                                 }
                             } else {

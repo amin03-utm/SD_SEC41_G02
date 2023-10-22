@@ -55,17 +55,17 @@
       <tbody>
         <?php
           // Replace with your database connection code
-          $dbHost = 'your_db_host';
-          $dbName = 'your_db_name';
-          $dbUser = 'your_db_user';
-          $dbPass = 'your_db_password';
+          $dbHost = 'localhost';
+          $dbName = 'db_sd_41_02';
+          $dbUser = 'sd41';
+          $dbPass = 'sd41project';
 
           try {
             $pdo = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPass);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             // Fetch food items from the database
-            $stmt = $pdo->query('SELECT * FROM food_items');
+            $stmt = $pdo->query('SELECT * FROM menu_items');
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
               echo '<tr>';
               echo '<td>' . $row['name'] . '</td>';
