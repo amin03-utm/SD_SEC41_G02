@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Shopping Cart</title>
+    <title>Checkout</title>
     <style>
         table {
             width: 100%;
@@ -21,17 +21,17 @@
             background-color: #f2f2f2;
         }
 
-        .delete-button {
-            background-color: #ff0000;
+        .pay-button {
+            background-color: #008CBA;
             color: #fff;
-            padding: 5px 10px;
+            padding: 10px 20px;
             border: none;
             cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <h1>Your Shopping Cart</h1>
+    <h1>Checkout</h1>
 
     <?php
     session_start();
@@ -54,26 +54,18 @@
 
         $user_email = $_SESSION["user_email"];
 
-        if (isset($_POST["delete_item"])) {
-            // Handle item deletion
-            $item_id = $_POST["item_id"];
-            $deleteQuery = "DELETE FROM cart_items WHERE user_email = '$user_email' AND id = $item_id";
-            $conn->query($deleteQuery);
-        }
-
         // Fetch cart items from the database
         $sql = "SELECT * FROM cart_items WHERE user_email = '$user_email'";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             echo "<table>";
-            echo "<tr><th>Item Name</th><th>Item Price</th><th>Actions</th></tr>";
+            echo "<tr><th>Item Name</th><th>Item Price</th></tr>";
             $totalPrice = 0;
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>" . $row["item_name"] . "</td>";
                 echo "<td>" . $row["item_price"] . "</td>";
-                echo "<td><form action='cart.php' method='post'><input type='hidden' name='item_id' value='" . $row['id'] . "'><input type='submit' name='delete_item' value='Delete' class='delete-button'></form></td>";
                 echo "</tr>";
                 $totalPrice += $row["item_price"];
             }
@@ -82,6 +74,9 @@
             // Format the total price with two decimal places
             $formattedTotalPrice = number_format($totalPrice, 2);
             echo "<p>Total Price: $formattedTotalPrice</p>";
+
+            // Add a "Pay" button with a link
+            echo "<a href='https://buy.stripe.com/test_3cs8yP6XHeQm1na4gn'><button class='pay-button'>Pay</button></a>";
         } else {
             echo "<p>Your cart is empty.</p>";
         }
@@ -93,10 +88,8 @@
         echo "Please log in to view your shopping cart.";
     }
     ?>
-    <a href="checkout.php">
-        <button type="button">Checkout</button>
-    </a>
     <br>
-    <a href="menuCustomer.php">Back to Menu</a>
+    <br>
+    <a href="menuCustomer.php">Back to Cart</a>
 </body>
 </html>
