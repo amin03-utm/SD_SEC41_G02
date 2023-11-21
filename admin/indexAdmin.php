@@ -55,6 +55,9 @@
                         <a class="nav-link" href="Customer.html">Customer</a>
                      </li>
                      <li class="nav-item">
+                        <a class="nav-link" href="orderHistoryAdmin.php">All Order History</a>
+                     </li>
+                     <li class="nav-item">
                         <a class="nav-link" href="editStaff.html">Staff</a>
                      </li>
                      <li class="nav-item">

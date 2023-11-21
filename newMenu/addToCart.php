@@ -27,31 +27,9 @@ if (isset($_SESSION["user_email"])) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        // Check if the item is already in the cart
-        $item_exists = false;
-
-        // Adjust the SQL query based on your table structure
-        $checkCartItemQuery = "SELECT * FROM cart_items WHERE user_email = '$user_id' AND item_id = $item_id";
-        $result = $conn->query($checkCartItemQuery);
-
-        if ($result->num_rows > 0) {
-            // Item already exists in the cart; you can update the quantity or perform other actions here if needed
-            $item_exists = true;
-        }
-
-        if (!$item_exists) {
-            // Add the item to the cart in the database
-            $insertCartItemQuery = "INSERT INTO cart_items (user_email, item_id, item_name, item_price) VALUES ('$user_id', $item_id, '$item_name', $item_price)";
-            $conn->query($insertCartItemQuery);
-
-            // Add the item to the cart session
-            $cart_item = array(
-                "id" => $item_id,
-                "name" => $item_name,
-                "price" => $item_price
-            );
-            $_SESSION["cart"][] = $cart_item;
-        }
+        // Add the item to the cart in the database
+        $insertCartItemQuery = "INSERT INTO cart_items (user_email, item_id, item_name, item_price) VALUES ('$user_id', $item_id, '$item_name', $item_price)";
+        $conn->query($insertCartItemQuery);
 
         // Close the database connection
         $conn->close();
