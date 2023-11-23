@@ -74,7 +74,7 @@
                         echo "<p>Total Price: $formattedTotalPrice</p>";
 
                         // Add a "Pay" button with a link
-                        echo "<a href='https://buy.stripe.com/test_9AQ9AAbL79hu3qocMM'><button class='btn btn-primary pay-button'>Pay</button></a>";
+                        echo "<a href='https://buy.stripe.com/test_9AQ9AAbL79hu3qocMM' target='_blank'><button class='btn btn-primary pay-button'>Pay</button></a>";
                     } else {
                         echo "<p>Your cart is empty.</p>";
                     }

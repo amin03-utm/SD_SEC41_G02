@@ -51,7 +51,7 @@
                         <a class="nav-link" href="menuCustomer.php">Menu</a>
                      </li>
                      <li class="nav-item">
-                     <a class="nav-link" href="orderHistory.php">Order History</a>
+                     <a class="nav-link" href="../customer/mainpage(customer)/orderHistory.php">Order History</a>
                     </li>
                      <li class="nav-item">
                         <a class="nav-link" href="../customer/mainpage(customer)/contact.html">Contact Us</a>
